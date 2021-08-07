@@ -1,0 +1,51 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+{% block NewContent %}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Product Details</h4>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>QTY</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in prod reversed %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+
+                                    {% if i.prod_img %}
+                                    <img src="{{ i.prod_img.url }}" width="150px">
+                                    {% endif %}
+
+                                </td>
+                                <td>{{ i.prod_nm }}</td>
+                                <td>{{ i.prod_price }}</td>
+                                <td>{{ i.prod_qty }}</td>
+                                <td>
+                                    <a href="{% url 'DeleteProduct' i.id %}" class="badge badge-danger">Delete</a>
+                                    <a href="{% url 'UpdateProduct' i.id %}" class="badge badge-info">Update</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock NewContent %}

@@ -1,0 +1,38 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+{% block NewContent %}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">New Order Details</h4>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Product Name</th>
+                                <th>Required QTY</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in ord reversed %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.prod.prod_nm }}</td>
+                                <td>{{ i.qty }}</td>
+                                <td>{{ i.tot_price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock NewContent %}

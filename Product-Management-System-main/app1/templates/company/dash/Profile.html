@@ -1,0 +1,58 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+{% block NewContent %}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Update Profile</h4>
+            <p class="card-description">
+              Basic Details 
+            </p>
+            <!-- enctype needed becoz we are talking image to the backend -->
+            <form class="forms-sample" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleInputName1">Company Name</label>
+                <input type="text" class="form-control" id="exampleInputName1" name="nm1"value="{{ USERS.c_name }}" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail3">Compnay Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail3" name="em1" value="{{ USERS.c_email }}" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputName1">Company Contact</label>
+                <input type="text" class="form-control" id="exampleInputName1" name="con1" value="{{ USERS.c_cno }}" placeholder="Contact No">
+              </div>
+              <div class="form-group">
+                <label>File upload</label>
+                
+                {% if USERS.profile  %}
+                <img src="{{USERS.profile.url}}" alt="" srcset="" width="200px">
+                {% endif %}
+                  
+               
+                <input type="file" name="img1" class="form-control">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleTextarea1">Address</label>
+                <textarea class="form-control" id="exampleTextarea1" name="add1" rows="4">
+                    {{ USERS.c_add }}
+                </textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword4">Password</label>
+                <input type="text" class="form-control" id="exampleInputPassword4"name="pass1 " value="{{ USERS.c_pass }}" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+{% endblock NewContent %}
